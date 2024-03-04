@@ -1,0 +1,6 @@
+{
+    "tenantId": "your tenant id",
+    "clientId":"your client id",
+    "clientSecret":"your client secret",
+    "scopes": ["https://graph.microsoft.com/.default"]
+}
