@@ -1,6 +1,14 @@
+"use client";
+
 import Image from "next/image";
+import { useAuthLogin } from "@/lib/hooks";
+import { useState } from "react";
 
 export default function Home() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const { run } = useAuthLogin(username, password);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -37,8 +45,22 @@ export default function Home() {
           priority
         />
       </div>
-      
-      <a href="/api/auth/login">本地登录</a>
+
+      <input
+        className="dark:text-[black]"
+        type="text"
+        placeholder="username"
+        onChange={(e) => setUsername(e.target.value)}
+        defaultValue={username}
+      />
+      <input
+        className="dark:text-[black]"
+        type="password"
+        placeholder="password"
+        onChange={(e) => setPassword(e.target.value)}
+        defaultValue={password}
+      />
+      <button onClick={run}>本地登录</button>
       <a href="/api/auth/google">Google登录</a>
       <a href="/api/auth/facebook">Facebook登录</a>
 
