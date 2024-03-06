@@ -29,8 +29,12 @@ export default async function handler(
         return res.status(401).json({ message: "Invalid credentials" });
       }
 
+      // 返回用户信息（排除密码字段）
+      const { password: _, ...userData } = user;
       // 登录成功，返回用户信息
-      return res.status(200).json({ message: "Login successful", user });
+      return res
+        .status(200)
+        .json({ message: "Login successful", user: userData });
     } else {
       return res.status(405).json({ message: "Method Not Allowed" });
     }
