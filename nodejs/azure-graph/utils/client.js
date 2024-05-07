@@ -7,6 +7,7 @@ const {
 } = require("@microsoft/microsoft-graph-client/authProviders/azureTokenCredentials");
 
 const config = require("./config.json");
+
 function getClient() {
     // Create an instance of the TokenCredential class that is imported
     const credential = new ClientSecretCredential(

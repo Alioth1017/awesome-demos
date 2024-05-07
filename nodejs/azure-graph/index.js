@@ -1,30 +1,20 @@
-const { getClient } = require("./client.js");
+const { getClient } = require("./utils/client.js");
 
-const client = getClient();
-
-async function getUsers() {
-  const res = await client.api("/users/").get();
-  console.log(res);
-  return res;
-}
-
-async function getUser(email) {
-  const res = await client.api(`/users/${email}`).get();
-  console.log(res);
-  return res;
-}
-
-async function getUserExtensionAttributes(email) {
-  const user = await getUser(email);
-  const res = await client
-    .api(`/users/${user.id}?$select=onPremisesExtensionAttributes`)
-    .get();
-  console.log(res);
-  return res;
-}
+const User = require("./user.js");
+const Chat = require("./chat.js");
 
 (async function () {
-  getUsers();
-  getUser("test.test@test.com");
-  getUserExtensionAttributes("test.test@test.com");
+  const client = getClient();
+  const user = new User(client);
+  const chat = new Chat(client);
+    user.getUsers();
+    user.getUser("test.test@test.com");
+    user.getUserExtensionAttributes("test.test@test.com");
+
+    const userInfo = await user.getUser("test.test@test.com");
+    const userInfo1 = await user.getUser("test2.test@test.com");
+    console.log(userInfo, userInfo1);
+    const chatInfo = await chat.createChat([userInfo.id, userInfo1.id]);
+    const sendResult = await chat.sendMessage(chatInfo.id, "测试消息发送");
+    console.log(sendResult.body);
 })();
