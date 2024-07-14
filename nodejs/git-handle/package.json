@@ -1,0 +1,14 @@
+{
+  "name": "git-handle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clone": "node clone.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "simple-git": "^3.25.0"
+  }
+}
