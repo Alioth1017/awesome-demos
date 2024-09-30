@@ -57,3 +57,5 @@ rm "/Users/admin/Library/Application Support/Beyond Compare 5/registry.dat"
 `cd /Applications/Beyond Compare.app/Contents/MacOS/`
 `chmod a+x BCompare`
 4. 完成后关闭就好了，然后你就可以无限试用了！
+
+注意：打开软件后，系统时间不能向前调整，否则会提示缺少评估信息或损坏。
